@@ -3,7 +3,10 @@ NAME		= pipex
 SRCS_DIR	= srcs/
 
 SRCS		= main.c \
-			${SRCS_DIR}print.c
+			${SRCS_DIR}parsing.c \
+			${SRCS_DIR}print.c \
+			${SRCS_DIR}split.c \
+			${SRCS_DIR}utils.c
 
 _DEPS =		pipex.h
 
