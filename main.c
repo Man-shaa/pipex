@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:32:36 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/03 17:28:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:47:31 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av, char **envp)
 	char	*cmd_path;
 
 	env_path = find_str_in_env(envp, "PATH");
-	printf("%s\n", env_path);
+	// printf("%s\n", env_path);
 	cmd_path = find_cmd_path(av[1], env_path, envp);
 	printf("%s\n", cmd_path);
     // execve("/usr/bin/wc", options, envp);

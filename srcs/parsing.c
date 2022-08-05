@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:16:33 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/03 17:28:42 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:46:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,24 @@ char	*find_cmd_path(char *cmd, char *env_path, char **envp)
 	int		i;
 	char	**all_paths;
 	char	*path;
+	(void)envp;
 
 	i = 0;
 	all_paths = ft_split(env_path, ':');
 	while (all_paths[i])
 	{
 		path = ft_strjoin(all_paths[i], cmd);
-		execve(path, &cmd, envp);
-		perror("Error");
-		free(path);
+		if (printf("Return exec : %d	", execve(path, &cmd, envp)))
+		{
+			printf("PAS BON : %s\n\n", path);
+			free(path);
+		}
+		else
+			printf("BON : %s\n", path);
+		// access(path, W_OK);
+		// perror("Error");
 		i++;
 	}
-	return (path);
+	free_tab(all_paths);
+	return (NULL);
 }
