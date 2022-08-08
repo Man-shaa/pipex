@@ -6,34 +6,21 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:16:33 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/05 16:46:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/08 20:13:01 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-// // parsing (somewhere in your code)
-// char *PATH_from_envp;
-// char **mypaths;
-// char **mycmdargs;
-// // retrieve the line PATH from envp
-// PATH_from_envp = ft_substr(envp ....);
-// mypaths = ft_split(PATH_from_envp, ":"); // see section 4 for a
-//                                             // small note[0]
-// mycmdargs = ft_split(ag[2], " ");
-// // in your child or parent process
-// int  i;
-// char *cmd;
-// i = 0;
-// while (mypaths[i])
-// {
-//     cmd = ft_join(mypaths[i], ag[2]); // protect your ft_join
-//     execve(cmd, mycmdargs, envp); // if execve succeeds, it exits
-//     // perror("Error"); <- add perror to debug
-//     free(cmd) // if execve fails, we free and we try a new path
-// 	i++;
-// }
-// return (EXIT_FAILURE);
+int	is_path(t_data *data, char *av)
+{
+	if (access(av, F_OK | X_OK) == 0)
+	{
+		data->cmd1_path = ft_strdup(av);
+		return (0);
+	}
+	return (1);
+}
 
 char	*find_str_in_env(char **envp, char *str)
 {
@@ -53,29 +40,22 @@ char	*find_str_in_env(char **envp, char *str)
 	return (NULL);
 }
 
-char	*find_cmd_path(char *cmd, char *env_path, char **envp)
+char	*find_cmd_path(char **options, char *env_path)
 {
 	int		i;
 	char	**all_paths;
 	char	*path;
-	(void)envp;
 
 	i = 0;
 	all_paths = ft_split(env_path, ':');
 	while (all_paths[i])
 	{
-		path = ft_strjoin(all_paths[i], cmd);
-		if (printf("Return exec : %d	", execve(path, &cmd, envp)))
-		{
-			printf("PAS BON : %s\n\n", path);
-			free(path);
-		}
-		else
-			printf("BON : %s\n", path);
-		// access(path, W_OK);
-		// perror("Error");
+		path = ft_strjoin(all_paths[i], options[0]);
+		if (access(path, F_OK | X_OK) == 0)
+			return (free_tab(all_paths), path);
+		free(path);
 		i++;
 	}
 	free_tab(all_paths);
-	return (NULL);
+	return (perror("Access for this argument failed "), NULL);
 }

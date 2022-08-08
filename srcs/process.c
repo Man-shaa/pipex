@@ -6,11 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:48:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/03 17:01:22 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/08 20:09:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 // void    pipex(int f1, int f2, char *cmd1, char *cmd2)
 // {
@@ -35,7 +35,19 @@
 //     waitpid(child2, &status, 0);
 // }
 
-// void	child_process(int f1, int cm1)
-// {
-// 	dup2(f1, STDIN_FILENO);
-// }
+int	child_one(t_data *data, char **options, char **envp)
+{
+	printf("fd[0] : %d\nfd[1] : %d\nSTDOUT : %d\n", data->fd[0], data->fd[1], STDOUT_FILENO);
+	if (dup2(data->fd[1], STDOUT_FILENO) < 0)
+		return (perror("dup2 failed "), 1);
+	printf("fd[0] : %d\nfd[1] : %d\nSTDOUT : %d\n", data->fd[0], data->fd[1], STDOUT_FILENO);
+	close(data->fd[0]);
+	close(data->fd[1]);
+	if (is_path(data, options[0]))
+		data->cmd1_path = find_cmd_path(&options[0], data->env_path);
+	if (!data->cmd1_path)
+		return (0);
+	if (execve(data->cmd1_path, options, envp) == -1)
+		return (perror("Execute failed "), 1);
+	return (1);
+}

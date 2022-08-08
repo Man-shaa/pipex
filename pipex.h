@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:31:05 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/03 17:28:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/08 20:13:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,31 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+
+
+typedef struct s_data
+{
+	int		fd[2];
+	int		pid1;
+	int		pid2;
+	char	*env_path;
+	char	*cmd1_path;
+	char	*cmd2_path;
+}				t_data;
+
+// init.c
+int		init_data(t_data *data);
+void	free_data(t_data data);
 
 // parsing.c
+int		is_path(t_data *data, char *av);
 char	*find_str_in_env(char **envp, char *str);
-char	*find_cmd_path(char *cmd, char *env_path, char **envp);
-
-// print.c
-void	ft_putstr_fd(char *str, int fd);
+char	*find_cmd_path(char **options, char *env_path);
 
 // process.c
-void	pipex(int f1, int f2, char *cmd1, char *cmd2);
-void	child_process(int f1, int cm1);
+int		child_one(t_data *data, char **options, char **envp);
 
 // split.c
 void	free_tab(char **tab);

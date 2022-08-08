@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 14:43:18 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/05 16:03:07 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:53:32 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	dest = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 2, 1);
 	if (!dest)
 		return (NULL);
-	while (s1[i])	
+	while (s1[i])
 	{
 		dest[i] = s1[i];
 		i++;
