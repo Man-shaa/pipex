@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:31:05 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/08 20:13:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:36:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,17 @@
 typedef struct s_data
 {
 	int		fd[2];
-	int		pid1;
-	int		pid2;
+	pid_t	pid1;
+	pid_t	pid2;
+	int		fd_infile;
+	int		fd_outfile;
 	char	*env_path;
 	char	*cmd1_path;
 	char	*cmd2_path;
 }				t_data;
 
 // init.c
-int		init_data(t_data *data);
+int		init_data(t_data *data, char *options[2][3], char **envp);
 void	free_data(t_data data);
 
 // parsing.c
@@ -42,6 +44,7 @@ char	*find_cmd_path(char **options, char *env_path);
 
 // process.c
 int		child_one(t_data *data, char **options, char **envp);
+int		child_two(t_data *data, char **options, char **envp);
 
 // split.c
 void	free_tab(char **tab);
