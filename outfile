@@ -1,0 +1,8 @@
+infile
+main.c
+main.o
+Makefile
+outfile
+pipex
+pipex.h
+srcs

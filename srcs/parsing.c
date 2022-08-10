@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:16:33 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/09 15:40:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/10 19:08:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ char	*find_cmd_path(char **options, char *env_path)
 		i++;
 	}
 	free_tab(all_paths);
-	return (perror("Access for this argument failed "), NULL);
+	return (perror("Access fot this command not found"), NULL);
 }

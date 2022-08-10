@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:31:05 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/09 15:36:07 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/10 22:08:24 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-
 typedef struct s_data
 {
 	int		fd[2];
@@ -30,11 +29,13 @@ typedef struct s_data
 	int		fd_outfile;
 	char	*env_path;
 	char	*cmd1_path;
+	char	**cmd1_args;
 	char	*cmd2_path;
+	char	**cmd2_args;
 }				t_data;
 
 // init.c
-int		init_data(t_data *data, char *options[2][3], char **envp);
+int		init_data(t_data *data, char *options[2][2], char **envp);
 void	free_data(t_data data);
 
 // parsing.c
