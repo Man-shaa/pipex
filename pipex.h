@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:31:05 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/10 22:08:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/10 22:29:33 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,18 @@ typedef struct s_data
 }				t_data;
 
 // init.c
-int		init_data(t_data *data, char *options[2][2], char **envp);
+int		init_data(t_data *data, char **envp);
 void	free_data(t_data data);
 
 // parsing.c
 int		is_path(t_data *data, char *av);
 char	*find_str_in_env(char **envp, char *str);
-char	*find_cmd_path(char **options, char *env_path);
+char	*find_cmd_path(char *cmd, char *env_path);
 
 // process.c
-int		child_one(t_data *data, char **options, char **envp);
-int		child_two(t_data *data, char **options, char **envp);
+int		child_one(t_data *data, char **av, char **envp);
+int		child_two(t_data *data, char **av, char **envp);
+int		pipex(t_data data, char **av, char **envp);
 
 // split.c
 void	free_tab(char **tab);

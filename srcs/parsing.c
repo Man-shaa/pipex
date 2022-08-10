@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:16:33 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/10 19:08:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/10 22:22:20 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_path(t_data *data, char *av)
 {
+	if (!av)
+		return (0);
 	if (access(av, F_OK | X_OK) == 0)
 	{
 		data->cmd1_path = ft_strdup(av);
@@ -40,7 +42,7 @@ char	*find_str_in_env(char **envp, char *str)
 	return (NULL);
 }
 
-char	*find_cmd_path(char **options, char *env_path)
+char	*find_cmd_path(char *cmd, char *env_path)
 {
 	int		i;
 	char	**all_paths;
@@ -50,7 +52,7 @@ char	*find_cmd_path(char **options, char *env_path)
 	all_paths = ft_split(env_path, ':');
 	while (all_paths[i])
 	{
-		path = ft_strjoin(all_paths[i], options[0]);
+		path = ft_strjoin(all_paths[i], cmd);
 		if (access(path, F_OK | X_OK) == 0)
 			return (free_tab(all_paths), path);
 		free(path);
