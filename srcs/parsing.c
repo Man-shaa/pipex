@@ -12,15 +12,12 @@
 
 #include "../pipex.h"
 
-int	is_path(t_data *data, char *av)
+int	is_path(char *av)
 {
 	if (!av)
-		return (0);
+		return (1);
 	if (access(av, F_OK | X_OK) == 0)
-	{
-		data->cmd1_path = ft_strdup(av);
 		return (0);
-	}
 	return (1);
 }
 

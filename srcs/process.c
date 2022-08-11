@@ -18,10 +18,10 @@ int	child_one(t_data *data, char **av, char **envp)
 		return (perror("dup2 fd[1] failed "), 0);
 	close(data->fd[1]);
 	data->cmd1_args = ft_split(av[1], ' ');
-	if (is_path(data, data->cmd1_args[0]))
+	if (is_path(data->cmd1_args[0]))
 		data->cmd1_path = find_cmd_path(data->cmd1_args[0], data->env_path);
 	if (data->cmd1_path == NULL)
-		return (0);
+		return (free_tab(data->cmd1_args), 0);
 	if (execve(data->cmd1_path, data->cmd1_args, envp) == -1)
 		return (perror("Execute cmd 1 failed "), 0);
 	return (1);
@@ -33,10 +33,10 @@ int	child_two(t_data *data, char **av, char **envp)
 		return (perror("dup2 fd[0] failed "), 0);
 	close(data->fd[0]);
 	data->cmd2_args = ft_split(av[2], ' ');
-	if (is_path(data, data->cmd2_args[0]))
+	if (is_path(data->cmd2_args[0]))
 		data->cmd2_path = find_cmd_path(data->cmd2_args[0], data->env_path);
 	if (data->cmd2_path == NULL)
-		return (0);
+		return (free_tab(data->cmd2_args), 0);
 	if (execve(data->cmd2_path, data->cmd2_args, envp) == -1)
 		return (perror("Execute cmd 2 failed "), 0);
 	return (1);
@@ -48,18 +48,12 @@ int	pipex(t_data data, char **av, char **envp)
 	if (data.pid1 < 0)
 		return (perror("Fork 1 failed "), 0);
 	if (data.pid1 == 0)
-	{
-		if (!child_one(&data, av, envp))
-			return (0);
-	}
+		child_one(&data, av, envp);
 	data.pid2 = fork();
 	if (data.pid2 < 0)
 		return (perror("Fork 2 failed "), 0);
 	if (data.pid2 == 0)
-	{
-		if (!child_two(&data, av, envp))
-			return (0);
-	}
+		child_two(&data, av, envp);
 	waitpid(data.pid1, NULL, 0);
 	waitpid(data.pid2, NULL, 0);
 	close(data.fd[0]);

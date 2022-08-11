@@ -39,7 +39,7 @@ int		init_data(t_data *data, char **envp);
 void	free_data(t_data data);
 
 // parsing.c
-int		is_path(t_data *data, char *av);
+int		is_path(char *av);
 char	*find_str_in_env(char **envp, char *str);
 char	*find_cmd_path(char *cmd, char *env_path);
 

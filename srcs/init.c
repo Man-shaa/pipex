@@ -17,7 +17,9 @@ int	init_data(t_data *data, char **envp)
 	data->cmd1_path = NULL;
 	data->cmd2_path = NULL;
 	data->env_path = NULL;
-	data->fd_infile = open("infile", O_RDWR);
+	data->cmd1_args = NULL;
+	data->cmd2_args = NULL;
+	data->fd_infile = open("infile", O_RDONLY);
 	if (data->fd_infile < 0)
 		return (perror("Open infile failed "), 0);
 	data->fd_outfile = open("outfile", O_CREAT | O_TRUNC | O_RDWR,
@@ -40,4 +42,8 @@ void	free_data(t_data data)
 		free(data.cmd1_path);
 	if (data.cmd2_path)
 		free(data.cmd2_path);
+	if (data.cmd1_args)
+		free_tab(data.cmd1_args);
+	if (data.cmd2_args)
+		free_tab(data.cmd2_args);
 }
