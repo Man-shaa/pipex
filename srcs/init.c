@@ -6,23 +6,23 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 19:43:02 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/10 22:30:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/12 16:04:01 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	init_data(t_data *data, char **envp)
+int	init_data(t_data *data, int ac, char **av, char **envp)
 {
 	data->cmd1_path = NULL;
 	data->cmd2_path = NULL;
 	data->env_path = NULL;
 	data->cmd1_args = NULL;
 	data->cmd2_args = NULL;
-	data->fd_infile = open("infile", O_RDONLY);
+	data->fd_infile = open(av[1], O_RDONLY);
 	if (data->fd_infile < 0)
 		return (perror("Open infile failed "), 0);
-	data->fd_outfile = open("outfile", O_CREAT | O_TRUNC | O_RDWR,
+	data->fd_outfile = open(av[ac - 1], O_CREAT | O_TRUNC | O_RDWR,
 			S_IWUSR | S_IRUSR);
 	if (data->fd_outfile < 0)
 		return (perror("Open outfile failed "), 0);

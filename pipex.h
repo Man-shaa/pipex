@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:31:05 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/10 22:29:33 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:35:58 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_data
 }				t_data;
 
 // init.c
-int		init_data(t_data *data, char **envp);
+int		init_data(t_data *data, int ac, char **av, char **envp);
 void	free_data(t_data data);
 
 // parsing.c
