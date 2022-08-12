@@ -6,29 +6,18 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:48:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/12 17:36:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:27:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	print_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		printf("%s\n", tab[i]);
-		i++;
-	}
-}
-
 int	child_one(t_data *data, char **av, char **envp)
 {
-	close(data->fd[0]);
 	if (dup2(data->fd[1], STDOUT_FILENO) < 0)
 		return (perror("dup2 fd[1] failed "), 0);
+	close(data->fd[1]);
+	close(data->fd[0]);
 	data->cmd1_args = ft_split(av[2], ' ');
 	if (!data->cmd1_args)
 		return (perror("There isn't an cmd1"), 0);
@@ -44,9 +33,10 @@ int	child_one(t_data *data, char **av, char **envp)
 
 int	child_two(t_data *data, char **av, char **envp)
 {
-	close(data->fd[1]);
 	if (dup2(data->fd[0], STDIN_FILENO) < 0)
 		return (perror("dup2 fd[0] failed "), 0);
+	close(data->fd[0]);
+	close(data->fd[1]);
 	data->cmd2_args = ft_split(av[3], ' ');
 	if (!data->cmd2_args)
 		return (perror("There isn't an cmd2"), 0);
