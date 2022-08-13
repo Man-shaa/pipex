@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/02 14:32:36 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/13 17:14:42 by msharifi         ###   ########.fr       */
+/*   Created: 2022/08/13 16:59:33 by msharifi          #+#    #+#             */
+/*   Updated: 2022/08/13 19:52:55 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/pipex.h"
+#include "includes/pipex_bonus.h"
+
+int	ft_lstsize(t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd)
+	{
+		i++;
+		cmd = cmd->next;
+	}
+	return (i);
+}
 
 int	main(int ac, char **av, char **envp)
 {
+	(void)ac;
+	(void)av;
+	(void)envp;
 	t_data	data;
-	*envp = 0;
 
-	if (ac != 5)
-		return (perror("Tuto : ./pipex infile cmd1 cmd2 outfile"), 1);
-	if (pipe(data.fd) == -1)
-		return (1);
-	if (!init_data(&data, ac, av, envp))
-		return (free_data(data), 1);
-	if (!pipex(data, av, envp))
-		return (1);
-	free_data(data);
+	data.cmd = create_list(ac);
+	printf("%d\n", ft_lstsize(data.cmd));
 	return (0);
 }

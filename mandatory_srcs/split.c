@@ -6,11 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:40:12 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/12 16:55:36 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/13 17:12:44 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 void	free_tab(char **tab)
 {

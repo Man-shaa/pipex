@@ -1,6 +1,8 @@
 NAME		= pipex
 
-SRCS_DIR	= srcs/
+SRCS_DIR		= mandatory_srcs/
+
+BONUS_SRCS_DIR	= bonus_srcs/
 
 SRCS		= main.c \
 			${SRCS_DIR}init.c \
@@ -9,30 +11,39 @@ SRCS		= main.c \
 			${SRCS_DIR}split.c \
 			${SRCS_DIR}utils.c
 
-_DEPS =		pipex.h
+SRCS_BONUS	= 	main_bonus.c \
+				${BONUS_SRCS_DIR}utils_list.c \
+				${BONUS_SRCS_DIR}utils.c
 
-INCL =		./includes/
+_DEPS =			pipex.h
 
-DEPS =		$(patsubst %,$(INCL)/%,$(_DEPS))
+INCL =			./includes/
 
-OBJS =		${SRCS:.c=.o}
+DEPS =			$(patsubst %,$(INCL)/%,$(_DEPS))
 
-CC =		clang
+OBJS =			${SRCS:.c=.o}
 
-RM =		rm -rf
+OBJS_BONUS =	$(SRCS_BONUS:.c=.o)
 
-CFLAGS =	-Wall -Werror -Wextra -g
+CC =			clang
 
-.c.o:		${DEPS} 
+RM =			rm -rf
+
+CFLAGS =		-Wall -Werror -Wextra -g
+
+.c.o:		${DEPS}
 		${CC} ${CFLAGS} -g3 -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}
 		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
+bonus:	${OBJS_BONUS}
+		${CC} ${CFLAGS} ${OBJS_BONUS} -o ${NAME}
+
 all:		${NAME}
 
 clean:		
-		${RM} ${OBJS}
+		${RM} ${OBJS} ${OBJS_BONUS}
 
 fclean:		clean
 		${RM} ${NAME}

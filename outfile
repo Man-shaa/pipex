@@ -1,8 +1,9 @@
+Makefile
+includes
 infile
 main.c
 main.o
-Makefile
+main_bonus.c
+mandatory_srcs
 outfile
 pipex
-pipex.h
-srcs

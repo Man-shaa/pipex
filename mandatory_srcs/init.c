@@ -6,11 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 19:43:02 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/13 15:41:32 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/13 18:38:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../includes/pipex.h"
 
 int	init_data(t_data *data, int ac, char **av, char **envp)
 {
@@ -25,7 +25,6 @@ int	init_data(t_data *data, int ac, char **av, char **envp)
 	data->fd_outfile = open(av[ac - 1], O_CREAT | O_TRUNC | O_RDWR, 0644);
 	if (data->fd_outfile < 0)
 		return (perror("Open outfile failed "), 0);
-	(void)envp;
 	data->env_path = find_str_in_env(envp, "PATH");
 	if (dup2(data->fd_infile, STDIN_FILENO) < 0)
 		return (perror("dup2 infile failed "), 0);
