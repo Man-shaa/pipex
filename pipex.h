@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:31:05 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/12 14:35:58 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/13 14:26:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int		init_data(t_data *data, int ac, char **av, char **envp);
 void	free_data(t_data data);
 
 // parsing.c
-int		is_path(char *av);
+int		is_path(t_data *data, char *av, int c);
 char	*find_str_in_env(char **envp, char *str);
-char	*find_cmd_path(char *cmd, char *env_path);
+char	*find_cmd_path(t_data *data, char *cmd, char *env_path);
 
 // process.c
 int		child_one(t_data *data, char **av, char **envp);

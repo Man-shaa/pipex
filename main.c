@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:32:36 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/12 18:25:06 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/13 15:39:38 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	main(int ac, char **av, char **envp)
 		return (1);
 	if (!init_data(&data, ac, av, envp))
 		return (free_data(data), 1);
-	// printf("%s\n", find_cmd_path(av[2], find_str_in_env(envp, "PATH=")));
-	// printf("%s\n", find_cmd_path(av[3], find_str_in_env(envp, "PATH=")));
 	if (!pipex(data, av, envp))
 		return (1);
 	free_data(data);

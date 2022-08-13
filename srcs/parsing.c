@@ -6,18 +6,24 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:16:33 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/12 18:20:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/13 15:40:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-int	is_path(char *av)
+int	is_path(t_data *data, char *av, int c)
 {
 	if (!av)
 		return (1);
 	if (access(av, F_OK | X_OK) == 0)
+	{
+		if (c == 1)
+			data->cmd1_path = av;
+		else if (c == 2)
+			data->cmd2_path = av;
 		return (0);
+	}
 	return (1);
 }
 
@@ -39,7 +45,7 @@ char	*find_str_in_env(char **envp, char *str)
 	return (NULL);
 }
 
-char	*find_cmd_path(char *cmd, char *env_path)
+char	*find_cmd_path(t_data *data, char *cmd, char *env_path)
 {
 	int		i;
 	char	**all_paths;
@@ -47,9 +53,9 @@ char	*find_cmd_path(char *cmd, char *env_path)
 
 	i = 0;
 	all_paths = ft_split(env_path, ':');
-	if (!all_paths && is_path(cmd))
+	if (!all_paths && is_path(data, cmd, 0))
 		return (perror("Access for this command not found"), NULL);
-	if (!is_path(cmd))
+	if (!is_path(data, cmd, 0))
 		return (free_tab(all_paths), cmd);
 	while (all_paths[i])
 	{
