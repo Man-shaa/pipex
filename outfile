@@ -1,9 +1,0 @@
-Makefile
-includes
-infile
-main.c
-main.o
-main_bonus.c
-mandatory_srcs
-outfile
-pipex

@@ -1,6 +1,6 @@
 NAME		= pipex
 
-SRCS_DIR		= mandatory_srcs/
+SRCS_DIR	= mandatory_srcs/
 
 BONUS_SRCS_DIR	= bonus_srcs/
 
@@ -12,24 +12,27 @@ SRCS		= main.c \
 			${SRCS_DIR}utils.c
 
 SRCS_BONUS	= 	main_bonus.c \
+				${BONUS_SRCS_DIR}init.c \
+				${BONUS_SRCS_DIR}parsing.c \
+				${BONUS_SRCS_DIR}split.c \
 				${BONUS_SRCS_DIR}utils_list.c \
 				${BONUS_SRCS_DIR}utils.c
 
-_DEPS =			pipex.h
+_DEPS		= pipex.h
 
-INCL =			./includes/
+INCL		= ./includes/
 
-DEPS =			$(patsubst %,$(INCL)/%,$(_DEPS))
+DEPS		= $(patsubst %,$(INCL)/%,$(_DEPS))
 
-OBJS =			${SRCS:.c=.o}
+OBJS		= ${SRCS:.c=.o}
 
-OBJS_BONUS =	$(SRCS_BONUS:.c=.o)
+OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
 
-CC =			clang
+CC			= clang
 
-RM =			rm -rf
+RM			= rm -rf
 
-CFLAGS =		-Wall -Werror -Wextra -g
+CFLAGS		= -Wall -Werror -Wextra -g
 
 .c.o:		${DEPS}
 		${CC} ${CFLAGS} -g3 -c $< -o ${<:.c=.o}

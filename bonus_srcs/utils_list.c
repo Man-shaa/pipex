@@ -6,29 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 18:27:02 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/13 19:52:20 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/27 18:32:29 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
-
-int	init_data(t_data *data, int ac, char **av)
-{
-	data->env_path = NULL;
-	data->fd_infile = open(av[1], O_RDONLY);
-	if (data->fd_infile < 0)
-		return (perror("Open infile failed "), 0);
-	data->fd_outfile = open(av [ac - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (data->fd_outfile < 0)
-		return (perror("Open outfile failed "), 0);
-	if (dup2(data->fd_infile, STDIN_FILENO) < 0)
-		return (perror("dup2 infile failed "), 0);
-	if (dup2(data->fd_outfile, STDOUT_FILENO) < 0)
-		return (perror("dup2 outfile failed "), 0);
-	close(data->fd_infile);
-	close(data->fd_outfile);
-	return (1);
-}
 
 t_cmd	*ft_lstnew(void)
 {
@@ -67,11 +49,30 @@ t_cmd	*create_list(int ac)
 	int		i;
 
 	i = 1;
-	cmd = ft_lstnew();
+	cmd = NULL;
+	if (ac != 1)
+		cmd = ft_lstnew();
 	while (i < ac - 1)
 	{
 		add_last(cmd);
 		i++;
 	}
 	return (cmd);
+}
+
+void	free_list(t_cmd *cmd)
+{
+	t_cmd	*tmp;
+
+	tmp = cmd;
+	while (cmd)
+	{
+		if (tmp->cmd_args)
+			free_tab(tmp->cmd_args);
+		if (tmp->cmd_path)
+			free(tmp->cmd_path);
+		cmd = cmd->next;
+		free(tmp);
+		tmp = cmd;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:32:36 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/13 17:14:42 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/27 15:13:21 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
-	*envp = 0;
 
 	if (ac != 5)
 		return (perror("Tuto : ./pipex infile cmd1 cmd2 outfile"), 1);
@@ -28,3 +27,4 @@ int	main(int ac, char **av, char **envp)
 	free_data(data);
 	return (0);
 }
+	// *envp = 0;
