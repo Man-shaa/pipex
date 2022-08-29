@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:15:21 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/27 16:16:56 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/29 15:05:52 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_cmd
 typedef struct s_data
 {
 	int		fd[2];
-	pid_t	pid;
 	int		fd_infile;
 	int		fd_outfile;
 	char	*env_path;
