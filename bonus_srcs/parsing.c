@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:26:52 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/27 16:24:47 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:09:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*find_cmd_path(t_data *data, char *cmd, char *env_path)
 	if (!all_paths && is_path(data, cmd))
 		return (perror("env not found, please specify a path directly "), NULL);
 	if (!is_path(data, cmd))
-		return (free_tab(all_paths), cmd);
+		return (free_tab(all_paths), ft_strdup(cmd));
 	while (all_paths[i])
 	{
 		path = ft_strjoin(all_paths[i], cmd);

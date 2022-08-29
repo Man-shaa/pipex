@@ -1,0 +1,23 @@
+
+env_path : /mnt/nfs/homes/msharifi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+************CMD[1]************
+
+cmd_path : /usr/bin/grep
+cmd_args[0] : grep
+
+************CMD[2]************
+
+cmd_path : /usr/bin/cat
+cmd_args[0] : cat
+
+************CMD[3]************
+
+cmd_path : /usr/bin/ls
+cmd_args[0] : ls
+
+************CMD[4]************
+
+cmd_path : /usr/bin/awk
+cmd_args[0] : awk
+

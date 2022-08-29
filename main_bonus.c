@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:59:33 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/27 16:29:30 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/29 12:25:53 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,6 @@ void	print_data(t_data *data)
 		i++;
 		tmp = tmp->next;
 	}
-}
-
-int	ft_lstsize(t_cmd *cmd)
-{
-	int	i;
-
-	i = 0;
-	while (cmd)
-	{
-		i++;
-		cmd = cmd->next;
-	}
-	return (i);
 }
 
 int	main(int ac, char **av, char **envp)
