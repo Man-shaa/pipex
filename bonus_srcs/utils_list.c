@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 18:27:02 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/29 11:45:29 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/30 12:51:49 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ t_cmd	*create_list(int ac)
 
 	i = 1;
 	cmd = NULL;
-	if (ac != 1)
+	if (ac > 3)
 		cmd = ft_lstnew();
-	while (i < ac - 1)
+	while (i < ac - 3)
 	{
 		add_last(cmd);
 		i++;

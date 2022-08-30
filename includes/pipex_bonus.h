@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:15:21 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/29 15:05:52 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/30 16:26:46 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ int		init_cmd(t_data *data, int ac, char **av);
 int		is_path(t_data *data, char *av);
 char	*find_str_in_env(char **envp, char *str);
 char	*find_cmd_path(t_data *data, char *cmd, char *env_path);
+
+// process.c
+int		redirect(t_data *data, t_cmd *cmd, char **envp, int fdin);
+int		pipex(t_data *data, int ac, char **envp);
 
 // split.c
 void	free_tab(char **tab);
