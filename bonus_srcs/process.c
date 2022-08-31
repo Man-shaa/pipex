@@ -6,18 +6,17 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:56:23 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/30 16:38:28 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:37:36 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
 
-int	redirect(t_data *data, t_cmd *cmd, char **envp, int fdin)
+int	redirect(t_cmd *cmd, char **envp, int fdin)
 {
 	pid_t	pid;
 	int		pipe_fd[2];
 
-	(void)data;
 	pipe(pipe_fd);
 	pid = fork();
 	if (pid < 0)
@@ -43,19 +42,17 @@ int	redirect(t_data *data, t_cmd *cmd, char **envp, int fdin)
 	return (1);
 }
 
-int	pipex(t_data *data, int ac, char **envp)
+int	pipex(t_data *data, char **envp)
 {
-	int		i;
 	t_cmd	*tmp;
 
-	i = 3;
 	tmp = data->cmd;
-	redirect(data, tmp, envp, data->fd_infile);
-	while (i < ac - 2)
+	redirect(tmp, envp, data->fd_infile);
+	tmp = tmp->next;
+	while (tmp->next)
 	{
-		if (!redirect(data, tmp, envp, 1))
+		if (!redirect(tmp, envp, 1))
 			return (free_list(data->cmd), 0);
-		i++;
 		tmp = tmp->next;
 	}
 	if (execve(tmp->cmd_path, tmp->cmd_args, envp) == -1)

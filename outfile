@@ -1,0 +1,10 @@
+bonus_srcs
+includes
+infile
+main_bonus.c
+main_bonus.o
+main.c
+Makefile
+mandatory_srcs
+outfile
+pipex
