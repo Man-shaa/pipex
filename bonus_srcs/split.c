@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:52:14 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/27 18:00:53 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/01 02:09:09 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return ;
 	while (tab[i])
 	{
 		free(tab[i]);

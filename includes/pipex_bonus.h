@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:15:21 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/31 18:33:46 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:45:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*find_str_in_env(char **envp, char *str);
 char	*find_cmd_path(t_data *data, char *cmd, char *env_path);
 
 // process.c
-int		redirect(t_cmd *cmd, char **envp, int fdin);
+int		redirect(t_cmd *cmd, char **envp);
 int		pipex(t_data *data, char **envp);
 
 // split.c

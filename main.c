@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:32:36 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/27 15:13:21 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/01 02:01:27 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ int	main(int ac, char **av, char **envp)
 	free_data(data);
 	return (0);
 }
-	// *envp = 0;
