@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:15:21 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/02 16:23:54 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:38:07 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ char	*find_cmd_path(t_data *data, char *cmd, char *env_path);
 // process.c
 int		create_pipes(t_data *data);
 void	close_pipes(t_data *data);
-int		redirect(t_cmd *cmd, char **envp);
+void	double_dup2(int fd1, int fd2);
+int		child(t_data *data, t_cmd *cmd, char **envp);
 int		pipex(t_data *data, char **envp);
 
 // split.c

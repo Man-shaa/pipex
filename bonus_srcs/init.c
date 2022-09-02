@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:23:48 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/02 16:18:23 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:02:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	init_data(t_data *data, int ac, char **av, char **envp)
 	if (!data->pipe)
 		return (perror("Malloc pipe failed "), 0);
 	if (!create_pipes(data))
-		return (0);
+		return (free(data->pipe), 0);
 	if (!init_cmd(data, ac, av))
-		return (0);
+		return (free(data->pipe), 0);
 	return (1);
 }
 
