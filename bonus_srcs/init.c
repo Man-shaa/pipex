@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:23:48 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/01 02:23:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:18:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_to_null(t_data *data)
 	t_cmd	*tmp;
 
 	data->env_path = NULL;
+	data->cmd_count = 0;
 	tmp = data->cmd;
 	while (tmp)
 	{
@@ -42,6 +43,13 @@ int	init_data(t_data *data, int ac, char **av, char **envp)
 		return (perror("dup2 outfile failed "), 0);
 	close(data->fd_infile);
 	close(data->fd_outfile);
+	data->cmd_nb = ac - 3;
+	data->pipe_nb = 2 * (data->cmd_nb - 1);
+	data->pipe = ft_calloc(sizeof(int), data->pipe_nb);
+	if (!data->pipe)
+		return (perror("Malloc pipe failed "), 0);
+	if (!create_pipes(data))
+		return (0);
 	if (!init_cmd(data, ac, av))
 		return (0);
 	return (1);

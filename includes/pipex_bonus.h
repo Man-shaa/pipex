@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:15:21 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/31 18:45:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:23:54 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ typedef struct s_data
 	int		fd[2];
 	int		fd_infile;
 	int		fd_outfile;
+	pid_t	pid;
+	int		cmd_nb;
+	int		cmd_count;
+	int		pipe_nb;
+	int		*pipe;
 	char	*env_path;
 	t_cmd	*cmd;
 }				t_data;
@@ -47,6 +52,8 @@ char	*find_str_in_env(char **envp, char *str);
 char	*find_cmd_path(t_data *data, char *cmd, char *env_path);
 
 // process.c
+int		create_pipes(t_data *data);
+void	close_pipes(t_data *data);
 int		redirect(t_cmd *cmd, char **envp);
 int		pipex(t_data *data, char **envp);
 

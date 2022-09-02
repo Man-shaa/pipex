@@ -1,11 +1,10 @@
-Makefile
 bonus_srcs
 includes
 infile
-main.c
 main_bonus.c
 main_bonus.o
+main.c
+Makefile
 mandatory_srcs
 outfile
 pipex
-pipexMedic
