@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:59:33 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/02 17:19:59 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:49:01 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int	main(int ac, char **av, char **envp)
 		return (free_list(data.cmd), 1);
 	if (!pipex(&data, envp))
 		return (1);
+	exit (1);
 	return (0);
 }

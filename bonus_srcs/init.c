@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:23:48 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/02 17:02:57 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:41:23 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,6 @@ int	init_data(t_data *data, int ac, char **av, char **envp)
 	data->fd_outfile = open(av[ac - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (data->fd_outfile < 0)
 		return (perror("Open outfile failed "), 0);
-	if (dup2(data->fd_infile, STDIN_FILENO) < 0)
-		return (perror("dup2 infile failed "), 0);
-	if (dup2(data->fd_outfile, STDOUT_FILENO) < 0)
-		return (perror("dup2 outfile failed "), 0);
-	close(data->fd_infile);
-	close(data->fd_outfile);
 	data->cmd_nb = ac - 3;
 	data->pipe_nb = 2 * (data->cmd_nb - 1);
 	data->pipe = ft_calloc(sizeof(int), data->pipe_nb);

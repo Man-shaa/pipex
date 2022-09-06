@@ -33,6 +33,10 @@ CC			= clang
 
 RM			= rm -rf
 
+GREEN		= \033[1;32m
+
+DEFAULT		= \033[0m
+
 CFLAGS		= -Wall -Werror -Wextra -g3
 
 .c.o:		${DEPS}
@@ -41,8 +45,9 @@ CFLAGS		= -Wall -Werror -Wextra -g3
 $(NAME):	${OBJS}
 		${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
-bonus:		${OBJS_BONUS}
-		${CC} ${CFLAGS} ${OBJS_BONUS} -o ${NAME}
+bonus:	${OBJS_BONUS}
+		@${CC} ${CFLAGS} ${OBJS_BONUS} -o ${NAME}
+		@echo "${GREEN}Executable pipex created${DEFAULT}"
 
 all:		${NAME}
 
@@ -51,6 +56,7 @@ clean:
 
 fclean:		clean
 		${RM} ${NAME}
+		@echo "\n${GREEN}Everything cleaned"
 
 re:			fclean
 		$(MAKE) all -j

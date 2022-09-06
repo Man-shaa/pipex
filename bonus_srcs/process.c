@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:56:23 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/02 17:45:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:21:44 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	close_pipes(t_data *data)
 	int	i;
 
 	i = 0;
+	close(data->fd_infile);
+	close(data->fd_outfile);
 	while (i < (data->pipe_nb))
 	{
 		close(data->pipe[i]);
@@ -56,7 +58,8 @@ int	child(t_data *data, t_cmd *cmd, char **envp)
 		else if (data->cmd_count == data->cmd_nb - 1)
 			double_dup2(data->pipe[2 * data->cmd_count - 2], data->fd_outfile);
 		else
-			double_dup2(data->pipe[2 * data->cmd_count - 2], data->pipe[2 * data->cmd_count + 1]);
+			double_dup2(data->pipe[2 * data->cmd_count - 2],
+				data->pipe[2 * data->cmd_count + 1]);
 		close_pipes(data);
 		if (!cmd->cmd_path)
 			return (free(data->pipe), perror("No cmd path "), 0);
