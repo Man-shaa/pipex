@@ -56,7 +56,7 @@ clean:
 
 fclean:		clean
 		${RM} ${NAME}
-		@echo "\n${GREEN}Everything cleaned"
+		@echo "\n${GREEN}Everything cleaned${DEFAULT}"
 
 re:			fclean
 		$(MAKE) all -j
