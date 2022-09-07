@@ -61,4 +61,4 @@ fclean:		clean
 re:			fclean
 		$(MAKE) all -j
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re bonus
