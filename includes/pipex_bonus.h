@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:15:21 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/06 17:39:08 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/04 16:29:39 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_data
 	char	*env_path;
 	t_cmd	*cmd;
 }				t_data;
+
+// error.c
+void	msg(char *str);
 
 // init.c
 void	init_to_null(t_data *data);

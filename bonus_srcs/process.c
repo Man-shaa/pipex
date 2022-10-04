@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:56:23 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/07 14:40:10 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:24:39 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	create_pipes(t_data *data)
 	while (i < data->cmd_nb - 1)
 	{
 		if (pipe(data->pipe + 2 * i) < 0)
-			return (perror("Pipe failed "), 0);
+			return (msg("Pipe failed"), 0);
 		i++;
 	}
 	return (1);
@@ -50,7 +50,7 @@ int	child(t_data *data, t_cmd *cmd, char **envp)
 {
 	data->pid = fork();
 	if (data->pid < 0)
-		return (perror("Fork failed "), 0);
+		return (msg("Fork failed"), 0);
 	if (data->pid == 0)
 	{
 		if (data->cmd_count == 0)
@@ -64,7 +64,7 @@ int	child(t_data *data, t_cmd *cmd, char **envp)
 		if (!cmd->cmd_path)
 			return (free(data->pipe), 0);
 		if (execve(cmd->cmd_path, cmd->cmd_args, envp) == -1)
-			return (perror("Execute failed ! "), 0);
+			return (msg("Execute failed !"), 0);
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:26:52 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/29 12:09:14 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:20:00 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	is_path(t_data *data, char *av)
 {
 	if (!av)
+		return (1);
+	if (!ft_strchr(av, '/'))
 		return (1);
 	if (access(av, F_OK | X_OK) == 0)
 	{
@@ -51,7 +53,7 @@ char	*find_cmd_path(t_data *data, char *cmd, char *env_path)
 	i = 0;
 	all_paths = ft_split(env_path, ':');
 	if (!all_paths && is_path(data, cmd))
-		return (perror("env not found, please specify a path directly "), NULL);
+		return (msg("env not found, please specify a path directly"), NULL);
 	if (!is_path(data, cmd))
 		return (free_tab(all_paths), ft_strdup(cmd));
 	while (all_paths[i])
@@ -63,5 +65,5 @@ char	*find_cmd_path(t_data *data, char *cmd, char *env_path)
 		i++;
 	}
 	free_tab(all_paths);
-	return (perror("Access for this command not found "), NULL);
+	return (msg("No such file or directory"), NULL);
 }
