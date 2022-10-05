@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:23:48 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/04 17:39:38 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:00:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	init_cmd(t_data *data, int ac, char **av)
 		if (!data->cmd->cmd_args[0])
 		{
 			data->cmd = tmp;
-			return (msg("cmd is empty"), 0);
+			return (msg("Command not found"), 0);
 		}
 		data->cmd->cmd_path = find_cmd_path(data, data->cmd->cmd_args[0],
 				data->env_path);
