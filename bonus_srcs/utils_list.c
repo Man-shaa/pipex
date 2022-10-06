@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 18:27:02 by msharifi          #+#    #+#             */
-/*   Updated: 2022/08/30 12:51:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:35:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,4 @@ t_cmd	*create_list(int ac)
 		i++;
 	}
 	return (cmd);
-}
-
-void	free_list(t_cmd *cmd)
-{
-	t_cmd	*tmp;
-
-	tmp = cmd;
-	while (cmd)
-	{
-		if (tmp->cmd_path)
-			free(tmp->cmd_path);
-		if (tmp->cmd_args)
-			free_tab(tmp->cmd_args);
-		cmd = cmd->next;
-		free(tmp);
-		tmp = cmd;
-	}
 }

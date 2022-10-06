@@ -6,26 +6,11 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:52:14 by msharifi          #+#    #+#             */
-/*   Updated: 2022/09/01 02:09:09 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/06 17:09:42 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
-
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
 
 int	word_count(char *str, char set)
 {
@@ -114,7 +99,7 @@ char	**ft_split(char	*str, char set)
 		return (NULL);
 	tab = ft_calloc(sizeof(char *), word_count(str, set) + 1);
 	if (!tab)
-		return (free(tab), NULL);
+		return (ft_free(tab), NULL);
 	while (j < word_count(str, set))
 	{
 		tab[j] = ft_calloc(1, char_count(str, set, j) + 1);

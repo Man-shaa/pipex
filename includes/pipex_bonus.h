@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:15:21 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/04 16:29:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:39:34 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ typedef struct s_data
 // error.c
 void	msg(char *str);
 
+// free.c
+void	ft_free(void *addr);
+void	free_tab(char **tab);
+void	free_list(t_cmd *cmd);
+
 // init.c
 void	init_to_null(t_data *data);
 int		init_data(t_data *data, int ac, char **av, char **envp);
@@ -62,7 +67,6 @@ int		child(t_data *data, t_cmd *cmd, char **envp);
 int		pipex(t_data *data, char **envp);
 
 // split.c
-void	free_tab(char **tab);
 int		word_count(char *str, char set);
 int		char_count(char *str, char set, int pos);
 char	*ft_putword(char *str, char *tab, char set, int pos);
@@ -72,7 +76,6 @@ char	**ft_split(char	*str, char set);
 t_cmd	*ft_lstnew(void);
 void	add_last(t_cmd *cmd);
 t_cmd	*create_list(int ac);
-void	free_list(t_cmd *cmd);
 
 // utils.c
 void	*ft_calloc(size_t n, size_t size);

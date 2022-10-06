@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 19:43:02 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/04 17:26:03 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:37:37 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,4 @@ int	init_data(t_data *data, int ac, char **av, char **envp)
 	close(data->fd_infile);
 	close(data->fd_outfile);
 	return (1);
-}
-
-void	free_data(t_data data)
-{
-	if (data.cmd1_path)
-		free(data.cmd1_path);
-	if (data.cmd2_path)
-		free(data.cmd2_path);
-	if (data.cmd1_args)
-		free_tab(data.cmd1_args);
-	if (data.cmd2_args)
-		free_tab(data.cmd2_args);
 }

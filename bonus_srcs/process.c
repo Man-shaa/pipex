@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:56:23 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/04 17:24:39 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:38:58 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	child(t_data *data, t_cmd *cmd, char **envp)
 				data->pipe[2 * data->cmd_count + 1]);
 		close_pipes(data);
 		if (!cmd->cmd_path)
-			return (free(data->pipe), 0);
+			return (ft_free(data->pipe), 0);
 		if (execve(cmd->cmd_path, cmd->cmd_args, envp) == -1)
 			return (msg("Execute failed !"), 0);
 	}
@@ -84,6 +84,6 @@ int	pipex(t_data *data, char **envp)
 	close_pipes(data);
 	waitpid(-1, NULL, 0);
 	free_list(data->cmd);
-	free(data->pipe);
+	ft_free(data->pipe);
 	return (1);
 }

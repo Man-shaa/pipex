@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:48:49 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/04 17:19:11 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:40:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	child_one(t_data *data, char **av, char **envp)
 	close(data->fd[0]);
 	data->cmd1_args = ft_split(av[2], ' ');
 	if (!data->cmd1_args || !data->cmd1_args[0])
-		return (free(data->cmd1_args), 0);
+		return (ft_free(data->cmd1_args), 0);
 	if (is_path(data, data->cmd1_args[0], 1))
 		data->cmd1_path = find_cmd_path(data, data->cmd1_args[0],
 				data->env_path);
@@ -39,7 +39,7 @@ int	child_two(t_data *data, char **av, char **envp)
 	close(data->fd[1]);
 	data->cmd2_args = ft_split(av[3], ' ');
 	if (!data->cmd2_args || !data->cmd2_args[0])
-		return (free(data->cmd2_args), msg("cmd2 is empty"), 0);
+		return (ft_free(data->cmd2_args), msg("cmd2 is empty"), 0);
 	if (is_path(data, data->cmd2_args[0], 2))
 		data->cmd2_path = find_cmd_path(data, data->cmd2_args[0],
 				data->env_path);

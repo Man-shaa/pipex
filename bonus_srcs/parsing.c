@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:26:52 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/04 17:20:00 by msharifi         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:40:03 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*find_cmd_path(t_data *data, char *cmd, char *env_path)
 		path = ft_strjoin(all_paths[i], cmd);
 		if (access(path, F_OK | X_OK) == 0)
 			return (free_tab(all_paths), path);
-		free(path);
+		ft_free(path);
 		i++;
 	}
 	free_tab(all_paths);

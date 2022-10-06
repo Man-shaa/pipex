@@ -6,6 +6,7 @@ BONUS_SRCS_DIR	= bonus_srcs/
 
 SRCS		= main.c \
 			${SRCS_DIR}error.c \
+			${SRCS_DIR}free.c \
 			${SRCS_DIR}init.c \
 			${SRCS_DIR}parsing.c \
 			${SRCS_DIR}process.c \
@@ -14,6 +15,7 @@ SRCS		= main.c \
 
 SRCS_BONUS	= 	main_bonus.c \
 				${BONUS_SRCS_DIR}error.c \
+				${BONUS_SRCS_DIR}free.c \
 				${BONUS_SRCS_DIR}init.c \
 				${BONUS_SRCS_DIR}parsing.c \
 				${BONUS_SRCS_DIR}process.c \
