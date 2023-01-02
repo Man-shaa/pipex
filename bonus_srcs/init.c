@@ -6,18 +6,25 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:23:48 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 16:34:24 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:18:05 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
 
-void	init_to_null(t_data *data)
+void	init_to_null(t_data *data, int n)
 {
 	t_cmd	*tmp;
 
 	data->env_path = NULL;
 	data->cmd_count = 0;
+	data->fd_infile = -1;
+	data->fd_outfile = -1;
+	while (n >= 0)
+	{
+		data->pid[n] = -1;
+		n--;
+	}
 	tmp = data->cmd;
 	while (tmp)
 	{
@@ -29,23 +36,26 @@ void	init_to_null(t_data *data)
 
 int	init_data(t_data *data, int ac, char **av, char **envp)
 {
-	init_to_null(data);
+	data->cmd_nb = ac - 3;
+	data->pipe_nb = 2 * (data->cmd_nb - 1);
+	data->pid = ft_calloc(data->cmd_nb, sizeof(pid_t));
+	if (!data->pid)
+		return (msg("Malloc pid array failed"), 0);
+	init_to_null(data, data->cmd_nb - 1);
 	data->env_path = find_str_in_env(envp, "PATH=");
 	data->fd_infile = open(av[1], O_RDONLY);
 	if (data->fd_infile < 0)
-		return (msg("Open infile failed"), 0);
+		return (ft_free(data->pid), msg("Open infile failed"), 0);
 	data->fd_outfile = open(av[ac - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (data->fd_outfile < 0)
-		return (msg("Open outfile failed"), 0);
-	data->cmd_nb = ac - 3;
-	data->pipe_nb = 2 * (data->cmd_nb - 1);
+		return (ft_free(data->pid), msg("Open outfile failed"), 0);
 	data->pipe = ft_calloc(sizeof(int), data->pipe_nb);
 	if (!data->pipe)
-		return (msg("Malloc pipe failed"), 0);
-	if (!create_pipes(data))
-		return (ft_free(data->pipe), 0);
+		return (ft_free(data->pid), msg("Malloc pipe failed"), 0);
 	if (!init_cmd(data, ac, av))
-		return (ft_free(data->pipe), 0);
+		return (ft_free(data->pid), close_pipes(data), ft_free(data->pipe), 0);
+	if (!create_pipes(data))
+		return (ft_free(data->pid), close_pipes(data), ft_free(data->pipe), 0);
 	return (1);
 }
 

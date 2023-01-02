@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 19:43:02 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 16:37:37 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:53:17 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	init_data(t_data *data, int ac, char **av, char **envp)
 	data->env_path = NULL;
 	data->cmd1_args = NULL;
 	data->cmd2_args = NULL;
+	data->fd_outfile = -1;
 	data->fd_infile = open(av[1], O_RDONLY);
 	if (data->fd_infile < 0)
 		return (msg("Open infile failed"), 0);

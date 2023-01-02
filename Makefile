@@ -43,7 +43,7 @@ DEFAULT		= \033[0m
 
 CFLAGS		= -Wall -Werror -Wextra -g3
 
-.c.o:		${DEPS}
+.c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	${OBJS}

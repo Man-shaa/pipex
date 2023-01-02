@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:32:36 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 16:40:15 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:51:26 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av, char **envp)
 	if (pipe(data.fd) == -1)
 		return (2);
 	if (!init_data(&data, ac, av, envp))
-		return (free_data(data), 3);
+		return (close_all(&data), free_data(data), 3);
 	if (!pipex(data, av, envp))
 		return (4);
 	free_data(data);

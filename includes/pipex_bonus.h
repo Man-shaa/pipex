@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 17:15:21 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 16:39:34 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:46:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_data
 	int		fd[2];
 	int		fd_infile;
 	int		fd_outfile;
-	pid_t	pid;
+	pid_t	*pid;
 	int		cmd_nb;
 	int		cmd_count;
 	int		pipe_nb;
@@ -48,9 +48,10 @@ void	msg(char *str);
 void	ft_free(void *addr);
 void	free_tab(char **tab);
 void	free_list(t_cmd *cmd);
+void	wait_all(t_data *data);
 
 // init.c
-void	init_to_null(t_data *data);
+void	init_to_null(t_data *data, int n);
 int		init_data(t_data *data, int ac, char **av, char **envp);
 int		init_cmd(t_data *data, int ac, char **av);
 
@@ -74,7 +75,7 @@ char	**ft_split(char	*str, char set);
 
 // utils_list.c
 t_cmd	*ft_lstnew(void);
-void	add_last(t_cmd *cmd);
+int		add_last(t_cmd *cmd);
 t_cmd	*create_list(int ac);
 
 // utils.c

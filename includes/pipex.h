@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 14:31:05 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 16:38:17 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:50:25 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	msg(char *str);
 // free.c
 void	ft_free(void *addr);
 void	free_data(t_data data);
+void	close_all(t_data *data);
 
 // init.c
 int		init_data(t_data *data, int ac, char **av, char **envp);

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:34:31 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 17:09:52 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:32:43 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,19 @@ void	free_list(t_cmd *cmd)
 		cmd = cmd->next;
 		ft_free(tmp);
 		tmp = cmd;
+	}
+}
+
+void	wait_all(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (!data)
+		return ;
+	while (i < data->cmd_nb - 1)
+	{
+		waitpid(data->pid[i], NULL, 0);
+		i++;
 	}
 }

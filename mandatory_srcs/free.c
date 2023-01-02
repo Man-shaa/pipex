@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:36:58 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 16:41:13 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:50:14 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,16 @@ void	free_data(t_data data)
 		free_tab(data.cmd1_args);
 	if (data.cmd2_args)
 		free_tab(data.cmd2_args);
+}
+
+void	close_all(t_data *data)
+{
+	if (data->fd_infile != -1)
+		close(data->fd_infile);
+	if (data->fd_outfile != -1)
+		close(data->fd_outfile);
+	if (data->fd[0] != -1)
+		close (data->fd[0]);
+	if (data->fd[1] != -1)
+		close (data->fd[1]);
 }

@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:56:23 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 16:38:58 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:10:18 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@ void	close_pipes(t_data *data)
 	int	i;
 
 	i = 0;
-	close(data->fd_infile);
-	close(data->fd_outfile);
-	while (i < (data->pipe_nb))
+	if (data->fd_infile != -1)
+		close(data->fd_infile);
+	if (data->fd_outfile != -1)
+		close(data->fd_outfile);
+	while (i < data->pipe_nb)
 	{
-		close(data->pipe[i]);
+		if (data->pipe[i] != -1)
+			close(data->pipe[i]);
 		i++;
 	}
 }
@@ -48,10 +51,10 @@ void	double_dup2(int fd1, int fd2)
 
 int	child(t_data *data, t_cmd *cmd, char **envp)
 {
-	data->pid = fork();
-	if (data->pid < 0)
+	data->pid[data->cmd_count] = fork();
+	if (data->pid[data->cmd_count] < 0)
 		return (msg("Fork failed"), 0);
-	if (data->pid == 0)
+	if (data->pid[data->cmd_count] == 0)
 	{
 		if (data->cmd_count == 0)
 			double_dup2(data->fd_infile, data->pipe[1]);
@@ -82,7 +85,7 @@ int	pipex(t_data *data, char **envp)
 		data->cmd_count++;
 	}
 	close_pipes(data);
-	waitpid(-1, NULL, 0);
+	wait_all(data);
 	free_list(data->cmd);
 	ft_free(data->pipe);
 	return (1);

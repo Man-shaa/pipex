@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 18:27:02 by msharifi          #+#    #+#             */
-/*   Updated: 2022/10/06 16:35:43 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:43:57 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,25 @@ t_cmd	*ft_lstnew(void)
 	return (new);
 }
 
-void	add_last(t_cmd *cmd)
+int	add_last(t_cmd *cmd)
 {
 	t_cmd	*last;
 	t_cmd	*tmp;
 
 	tmp = cmd;
 	last = ft_lstnew();
+	if (!last)
+		return (0);
 	if (!cmd)
 	{
 		cmd = last;
-		return ;
+		return (1);
 	}
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = last;
 	last->next = NULL;
+	return (1);
 }
 
 t_cmd	*create_list(int ac)
@@ -51,10 +54,15 @@ t_cmd	*create_list(int ac)
 	i = 1;
 	cmd = NULL;
 	if (ac > 3)
+	{
 		cmd = ft_lstnew();
+		if (!cmd)
+			return (NULL);
+	}
 	while (i < ac - 3)
 	{
-		add_last(cmd);
+		if (!add_last(cmd))
+			return (NULL);
 		i++;
 	}
 	return (cmd);
