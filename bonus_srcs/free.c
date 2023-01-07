@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 16:34:31 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/02 18:24:49 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:54:15 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	wait_all(t_data *data)
 	i = 0;
 	if (!data)
 		return ;
-	while (i < data->cmd_nb - 1)
+	while (i < data->cmd_nb)
 	{
 		waitpid(data->pid[i], NULL, 0);
 		i++;

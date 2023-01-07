@@ -6,7 +6,7 @@
 /*   By: msharifi <msharifi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 14:23:48 by msharifi          #+#    #+#             */
-/*   Updated: 2023/01/02 18:18:05 by msharifi         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:37:56 by msharifi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	init_data(t_data *data, int ac, char **av, char **envp)
 	data->fd_outfile = open(av[ac - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (data->fd_outfile < 0)
 		return (ft_free(data->pid), msg("Open outfile failed"), 0);
-	data->pipe = ft_calloc(sizeof(int), data->pipe_nb);
+	data->pipe = ft_calloc(data->pipe_nb, sizeof(int));
 	if (!data->pipe)
 		return (ft_free(data->pid), msg("Malloc pipe failed"), 0);
 	if (!init_cmd(data, ac, av))
-		return (ft_free(data->pid), close_pipes(data), ft_free(data->pipe), 0);
+		return (ft_free(data->pid), ft_free(data->pipe), 0);
 	if (!create_pipes(data))
 		return (ft_free(data->pid), close_pipes(data), ft_free(data->pipe), 0);
 	return (1);
